@@ -1,0 +1,7 @@
+{
+    "env": {
+        "MONGO_USER": "mmdd",
+        "MONGO_PWD": "WarOOfwvSVOm89AC",
+        "MONGO_DB": "events-react-dev"
+    }
+}

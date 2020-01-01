@@ -1,0 +1,7 @@
+Graph Ql Tuto setup
+    packages: 
+        express -> handles requests
+        bodyparser -> to parse json responses
+        graphql & express graphql -> ?? ToDO: Read documentation 
+        mongoose -> third party mongodb  
+        bcryptjs -> prrovides has to compare password
