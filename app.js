@@ -13,6 +13,14 @@ const app = express();
 
 app.use(bodyParser.json());
 
+const user = userId => {
+    return User.findById(userId).then(user => {
+        return {...user._doc, id: user.id}
+    }).catch (err => {
+        throw err;
+    })
+}
+
 
 app.use('/graphql', graphQlHttp({
     schema: buildSchema(`
@@ -22,12 +30,14 @@ app.use('/graphql', graphQlHttp({
             description: String!
             price: Float
             date: String!
+            creator: User!
         }
 
         type User {
             _id: ID!
             email: String!
             password: String
+            createdEvents: [Event!]
         }
 
         input EventInput {
@@ -57,9 +67,14 @@ app.use('/graphql', graphQlHttp({
     `),
     rootValue: {
        events: () => {
-           return Event.find().then(events => {
+           return Event.find()
+           .then(events => {
                return events.map(event => {
-                   return { ...event._doc, _id: event.id};
+                   return { 
+                       ...event._doc, 
+                       _id: event.id,
+                       creator: user.bind(this, event._doc.creator)
+                    };
                })
            }).catch(err => {
                throw err;
