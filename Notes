@@ -5,3 +5,11 @@ Graph Ql Tuto setup
         graphql & express graphql -> ?? ToDO: Read documentation 
         mongoose -> third party mongodb  
         bcryptjs -> prrovides has to compare password
+
+
+
+
+
+Decoupled  front edn and backend
+    token: to client which client can store and attache to subs request then validated on
+        server side
